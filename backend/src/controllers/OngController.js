@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const generateUniqueId = require('../util/generateUniqueId');
 const connection = require('../database/connection');
 
 module.exports = {
@@ -11,13 +11,13 @@ module.exports = {
   async store(req, res) {
     const { name, email, whatsapp, city, uf } = req.body;
 
-    const existEmail = await connection('ongs').where('email', email).select('*');
+    const existEmail = await connection('ongs').where('email', email).select('*').first();
 
     if(existEmail) {
       return res.status(401).json({error: ` ja existe uma ong cadastrada com este e-mail ` });
     }
 
-    const id = crypto.randomBytes(4).toString('HEX');
+    const id = generateUniqueId();
 
     await connection('ongs').insert({
       id,
