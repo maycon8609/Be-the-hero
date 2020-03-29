@@ -47,6 +47,10 @@ module.exports = {
       .select('ong_id')
       .first();
 
+    if(!incident) {
+      return res.status(401).json({ error: ' Casos ja deletado ou inexistente. '});
+    }
+
     if (incident.ong_id !== ong_id) {
       return res.status(401).json({ error: 'Operation not permitted' });
     }
