@@ -14,17 +14,12 @@ ___
 
 ### Routes
   - #### Ongs
+
   > POST Create
   > http://localhost:3333/ongs
   >
   > recebe os seguintes parametros todos __String__
-  >
-  > "name": "TEST",
-	> "email": "test@api.com",
-	> "whatsapp": "123456789",
-	> "city": "Teresina",
-	> "uf": "pi"
-
+  > ![ongs post route](data-insomnia/ongs-post.png)
 ___
 
   > GET List
