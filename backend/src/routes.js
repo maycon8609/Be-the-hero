@@ -1,22 +1,33 @@
-const express = require('express');
-const routes = express.Router();
+import { Router } from "express";
 
-const auth = require('./middleware/auth');
+const routes = Router();
 
-const OngController = require('./controllers/OngController');
-const IncidentController = require('./controllers/IncidentController');
-const ProfileController = require('./controllers/ProfileController');
-const SessionController = require('./controllers/SessionController');
+import auth from "./middleware/auth.js";
 
-routes.get('/ongs', OngController.index);
-routes.post('/ongs', auth.createOng, OngController.store);
+import OngController from "./controllers/OngController.js";
+import IncidentController from "./controllers/IncidentController.js";
+import ProfileController from "./controllers/ProfileController.js";
+import SessionController from "./controllers/SessionController.js";
 
-routes.get('/incidents', auth.listIncidents, IncidentController.index);
-routes.post('/incident',auth.createIncidentBody, auth.createIncidentAuth, IncidentController.create);
-routes.delete('/incident/:id', auth.deleteIncidentParams, auth.deleteIncidentHeaders, IncidentController.delete);
+routes.get("/ongs", OngController.index);
+routes.post("/ongs", auth.createOng, OngController.store);
 
-routes.get('/profile', auth.listProfile, ProfileController.index);
+routes.get("/incidents", auth.listIncidents, IncidentController.index);
+routes.post(
+  "/incident",
+  auth.createIncidentBody,
+  auth.createIncidentAuth,
+  IncidentController.create
+);
+routes.delete(
+  "/incident/:id",
+  auth.deleteIncidentParams,
+  auth.deleteIncidentHeaders,
+  IncidentController.delete
+);
 
-routes.post('/session', auth.createSession, SessionController.create);
+routes.get("/profile", auth.listProfile, ProfileController.index);
 
-module.exports = routes;
+routes.post("/session", auth.createSession, SessionController.create);
+
+export default routes

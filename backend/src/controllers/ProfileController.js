@@ -1,13 +1,13 @@
-const connection = require('../database/connection');
+import connection from "../database/connection.js"
 
-module.exports = {
-  async index(req, res) {
-    const ong_id = req.headers.authorization;
+async function index(req, res) {
+  const ong_id = req.headers.authorization;
 
-    const profileIncidents = await connection('incidents')
-      .where('ong_id', ong_id)
-      .select('*');
+  const profileIncidents = await connection("incidents")
+    .where("ong_id", ong_id)
+    .select("*");
 
-    return res.json(profileIncidents);
-  }
-};
+  return res.json(profileIncidents);
+}
+
+export default { index };

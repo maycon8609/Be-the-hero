@@ -1,6 +1,7 @@
-const request = require('supertest');
-const app = require('../../src/app');
-const connection = require('../../src/database/connection');
+import request from 'supertest'
+
+import app from '../../src/app.js'
+import connection from '../../src/database/connection.js'
 
 describe('ONG', () => {
   beforeEach(async () => {
