@@ -24,7 +24,7 @@ export class OngService {
   ): Promise<Ong> {
     const existEmail = await this.ongRepository.findByEmail(email);
 
-    if (existEmail) throw new Error("Deu ruim aqui dede");
+    if (existEmail) throw new Error("Ja existe uma ong cadastrada com este e-mail");
 
     const id = generateUniqueId();
 
